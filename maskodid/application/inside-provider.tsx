@@ -28,12 +28,16 @@ export function InsideProvider(props: React.PropsWithChildren<Props>) {
   };
 
   const prepareSeed = () => {
-    return new Promise<void>((resolve, reject) => {
-      const handleDone = (error?: Error) => {
-        error ? reject(error) : resolve();
-      };
-      context.goNext(<SeedIndexScreen done={handleDone} />);
-    });
+    if (backbone.hasSeed) {
+      return Promise.resolve();
+    } else {
+      return new Promise<void>((resolve, reject) => {
+        const handleDone = (error?: Error) => {
+          error ? reject(error) : resolve();
+        };
+        context.goNext(<SeedIndexScreen done={handleDone} />);
+      });
+    }
   };
 
   const permitAuthentication = (origin: string) => {
@@ -47,19 +51,23 @@ export function InsideProvider(props: React.PropsWithChildren<Props>) {
     });
   };
 
+  async function withShow<A>(f: () => Promise<A> | A) {
+    await bus.call("show");
+    try {
+      return await f();
+    } finally {
+      await bus.call("hide");
+      context.goHome();
+    }
+  }
+
   useEffect(() => {
     bus.expose("authenticate", async (data, origin) => {
-      await bus.call("show");
-      try {
-        if (!backbone.hasSeed) {
-          await prepareSeed();
-        }
+      return withShow(async () => {
+        await prepareSeed();
         await permitAuthentication(origin);
         return backbone.did();
-      } finally {
-        await bus.call("hide");
-        context.goHome();
-      }
+      });
     });
   }, [backbone, bus]);
 
