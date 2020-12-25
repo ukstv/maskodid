@@ -16,19 +16,26 @@ export class Cases {
     private readonly backbone: IBackbone,
     private readonly bus: IBus
   ) {
-    this.queue.on("idle", async () => {
-      this.bus.call("hide").catch(() => {
-        // Do Nothing
-      });
+    this.queue.on("idle", () => {
       this.inside.goHome();
+    });
+  }
+
+  private command<A>(f: () => Promise<A>, hideAfter: boolean = true) {
+    return this.queue.add(async () => {
+      const result = await f();
+      if (hideAfter) {
+        await this.bus.call("hide").catch(() => {});
+      }
+      return result;
     });
   }
 
   // COMMAND
   async clearKeyCommand() {
-    await this.queue.add(() => {
+    return this.command<void>(async () => {
       this.backbone.clearSeed();
-    });
+    }, false);
   }
 
   // NO QUEUE
@@ -44,9 +51,9 @@ export class Cases {
 
   // COMMAND
   async createKeyCommand() {
-    await this.queue.add(() => {
+    return this.command<void>(() => {
       return this.createKey();
-    });
+    }, false);
   }
 
   async createKey() {
@@ -78,7 +85,7 @@ export class Cases {
   }
 
   async authenticateCommand(origin: string) {
-    return this.queue.add(async () => {
+    return this.command(async () => {
       await this.bus.call("show");
       await this.ensureKey();
       await this.permitAuthenticate(origin);
