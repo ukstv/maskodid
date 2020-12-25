@@ -1,11 +1,9 @@
 import { useContext, useEffect } from "react";
 import { BackboneContext } from "../../backbone/backbone";
 import * as uint8arrays from "uint8arrays";
-import { useInside } from "../inside-provider";
 
-export function SeedMetamaskScreen(props: { done?: (error?: Error) => void }) {
+export function SeedMetamaskScreen(props: { done: (error?: Error) => void }) {
   const backbone = useContext(BackboneContext);
-  const inside = useInside();
 
   useEffect(() => {
     const run = async () => {
@@ -26,15 +24,12 @@ export function SeedMetamaskScreen(props: { done?: (error?: Error) => void }) {
     };
     run()
       .then(() => {
-        inside.goHome();
-        if (props.done) props.done();
+        props.done();
       })
       .catch((error) => {
-        console.log(error);
-        inside.goHome();
-        if (props.done) props.done(error);
+        props.done(error);
       });
   });
 
-  return <div className={"m-2"}>Authenticating via MetaMask...</div>;
+  return <div className={"m-2"}>Creating key using MetaMask...</div>;
 }

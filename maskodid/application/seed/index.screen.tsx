@@ -7,7 +7,7 @@ enum AuthSource {
   METAMASK,
 }
 
-export function SeedIndexScreen(props: { done?: (error?: Error) => void }) {
+export function SeedIndexScreen(props: { done: (error?: Error) => void }) {
   const inside = useInside();
 
   const handleSelect = (authSource: AuthSource) => {
@@ -22,14 +22,14 @@ export function SeedIndexScreen(props: { done?: (error?: Error) => void }) {
 
   return (
     <>
-      <h1 className={"frame-container-heading"}>Authenticate via:</h1>
+      <h1 className={"frame-container-heading"}>Create key using:</h1>
       <ul className={"auth-buttons-container"}>
         <li>
           <button
             className={"text-center"}
             onClick={() => handleSelect(AuthSource.METAMASK)}
           >
-            <img src={"/metamask-fox.svg"} className={"h-full inline"} />
+            <img src={"/metamask-fox.svg"} className={"h-full inline"} title={"MetaMask"} />
           </button>
         </li>
       </ul>

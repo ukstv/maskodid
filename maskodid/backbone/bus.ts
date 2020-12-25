@@ -2,7 +2,7 @@ import React from "react";
 import { RPC } from "@maskodid/postmessage-rpc";
 import { CommandQueue } from "./command-queue";
 
-interface IBus {
+export interface IBus {
   expose<A>(
     name: string,
     handler: (params: A, origin: string) => Promise<any>
@@ -10,7 +10,7 @@ interface IBus {
   call<A>(method: string, params?: object): Promise<A>;
 }
 
-export class Bus {
+export class Bus implements IBus {
   private readonly queue: CommandQueue;
 
   static create(): IBus {

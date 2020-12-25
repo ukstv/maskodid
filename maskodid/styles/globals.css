@@ -10,7 +10,7 @@
     @apply text-center my-2 flex-grow-0;
 }
 
-ul.auth-buttons-container {
+ul.auth-buttons-container, .frame-container-body {
     @apply flex-auto flex content-center justify-center;
 }
 
@@ -22,7 +22,7 @@ ul.auth-buttons-container>li>button {
 }
 
 .btn {
-    @apply py-1 px-4 text-sm bg-white border border-r-4 border-t-4 border-gray-900;
+    @apply py-1 px-4 text-sm bg-white border border-r-4 border-t-4 border-gray-900 -mr-2 -mt-2;
 }
 
 .btn:active {

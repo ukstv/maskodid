@@ -5,17 +5,15 @@ import {
   AlgorithmKind,
 } from "@silentcastle/keys";
 import { BehaviorSubject } from "rxjs";
-import { Subjectable } from "./use-subjectable";
 
 const privateKeyFactory = new PrivateKeyFactory();
 
 export interface IBackbone {
   setSeed(seed: string): void;
   hasSeed: boolean;
-  authenticate(): Promise<string>;
+  // authenticate(): Promise<string>;
   did(): Promise<string>;
   clearSeed(): void;
-  page$: Subjectable<JSX.Element>;
 }
 
 export class EmptyBackbone implements IBackbone {

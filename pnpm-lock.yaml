@@ -32,6 +32,7 @@ importers:
       '@silentcastle/keys': 1.4.0
       autoprefixer: 10.1.0
       next: 10.0.4_c39e9db791ea05e3ec4e0e74abb7a6b5
+      p-queue: 6.6.2
       react: 17.0.1
       react-dom: 17.0.1_react@17.0.1
       rxjs: 6.6.3
@@ -48,6 +49,7 @@ importers:
       '@types/react': ^17.0.0
       autoprefixer: ^10.1.0
       next: 10.0.4
+      p-queue: ^6.6.2
       react: 17.0.1
       react-dom: 17.0.1
       rxjs: ^6.6.3
@@ -4783,7 +4785,6 @@ packages:
     resolution:
       integrity: sha512-ycIL2+1V32th+8scbpTvyHNaHe02z0sjgh91XXjAk+ZeXoPN4Z46DVUnzdso0aX4KckKw0FNNFHdjZ2UsZvxiA==
   /p-finally/1.0.0:
-    dev: true
     engines:
       node: '>=4'
     resolution:
@@ -4818,6 +4819,23 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-R79ZZ/0wAxKGu3oYMlz8jy/kbhsNrS7SKZ7PxEHBgJ5+F2mtFW2fK2cOtBh1cHYkQsbzFV7I+EoRKe6Yt0oK7A==
+  /p-queue/6.6.2:
+    dependencies:
+      eventemitter3: 4.0.7
+      p-timeout: 3.2.0
+    dev: false
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-RwFpb72c/BhQLEXIZ5K2e+AhgNVmIejGlTgiB9MzZ0e93GRvqZ7uSi0dvRF7/XIXDeNkra2fNHBxTyPDGySpjQ==
+  /p-timeout/3.2.0:
+    dependencies:
+      p-finally: 1.0.0
+    dev: false
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-rhIwUycgwwKcP9yTOOFK/AKsAopjjCakVqLHePO3CC6Mir1Z99xT+R63jZxAT5lFZLa2inS5h+ZS2GvR99/FBg==
   /p-try/2.2.0:
     engines:
       node: '>=6'
