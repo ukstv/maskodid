@@ -5,7 +5,7 @@ export function HomeDidScreen(props: { did: string }) {
   const cases = useCases();
 
   const handleClear = () => {
-    cases.clearKey().catch(console.error);
+    cases.clearKeyCommand().catch(console.error);
   };
 
   const fingerprint = props.did.replace(/did:key:/, "");

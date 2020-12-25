@@ -8,6 +8,7 @@ export function DidSection(props: { maskodid: Maskodid }) {
     props.maskodid
       .authenticate()
       .then((did) => {
+        console.log("DidSection.authenticate", did);
         setDid(did);
       })
       .catch((error) => {

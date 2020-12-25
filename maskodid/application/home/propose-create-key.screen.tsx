@@ -5,7 +5,7 @@ export function HomeProposeCreateKeyScreen() {
   const cases = useCases();
 
   const handleCreate = () => {
-    cases.createKey().catch(console.error);
+    cases.createKeyCommand().catch(console.error);
   };
 
   return (

@@ -15,37 +15,11 @@ export function InsideProvider(props: React.PropsWithChildren<Props>) {
   const backbone = useContext(BackboneContext);
   const [inside, setInside] = useState(props.home);
   const context = new InsideContextReal(setInside, props.home);
-  const cases = new Cases(context, backbone, bus);
-
-  const permitAuthentication = (origin: string) => {
-    return new Promise<void>((resolve, reject) => {
-      const handleDone = (error?: Error) => {
-        error ? reject(error) : resolve();
-      };
-      context.goNext(
-        <PermitAuthenticationScreen done={handleDone} origin={origin} />
-      );
-    });
-  };
-
-  async function withShow<A>(f: () => Promise<A> | A) {
-    await bus.call("show");
-    try {
-      return await f();
-    } finally {
-      await bus.call("hide");
-      context.goHome();
-    }
-  }
+  const [cases] = useState(() => new Cases(context, backbone, bus));
 
   useEffect(() => {
     bus.expose("authenticate", async (data, origin) => {
-      return cases.authenticate(origin);
-      // return withShow(async () => {
-      //   await prepareSeed();
-      //   await permitAuthentication(origin);
-      //   return backbone.did();
-      // });
+      return cases.authenticateCommand(origin);
     });
   }, [backbone, bus]);
 

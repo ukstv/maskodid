@@ -16,48 +16,46 @@ export class Cases {
     private readonly backbone: IBackbone,
     private readonly bus: IBus
   ) {
-    this.queue.on("idle", () => {
-      console.log("idle");
-      // this.inside.goHome();
+    this.queue.on("idle", async () => {
+      this.bus.call("hide").catch(() => {
+        // Do Nothing
+      });
+      this.inside.goHome();
     });
   }
 
-  async clearKey() {
-    this.backbone.clearSeed();
-    this.inside.goHome();
+  // COMMAND
+  async clearKeyCommand() {
+    await this.queue.add(() => {
+      this.backbone.clearSeed();
+    });
   }
 
+  // NO QUEUE
   async displayDid() {
     const did = await this.backbone.did();
     this.inside.goNext(<HomeDidScreen did={did} />);
   }
 
+  // NO QUEUE
   proposeCreateKey() {
     this.inside.goNext(<HomeProposeCreateKeyScreen />);
   }
 
-  async createKeyAndGoHome() {
-    await this.createKey();
-    this.inside.goHome();
+  // COMMAND
+  async createKeyCommand() {
+    await this.queue.add(() => {
+      return this.createKey();
+    });
   }
 
-  createKey() {
+  async createKey() {
     return new Promise<void>((resolve, reject) => {
       const handleDone = (error?: Error) => {
         error ? reject(error) : resolve();
       };
       this.inside.goNext(<SeedIndexScreen done={handleDone} />);
     });
-  }
-
-  async withShow<A>(f: () => Promise<A> | A) {
-    await this.bus.call("show");
-    try {
-      return await f();
-    } finally {
-      await this.bus.call("hide");
-      this.inside.goHome();
-    }
   }
 
   async ensureKey() {
@@ -70,7 +68,6 @@ export class Cases {
 
   async permitAuthenticate(origin: string) {
     return new Promise<void>((resolve, reject) => {
-      console.log("permit auth");
       const handleDone = (error?: Error) => {
         error ? reject(error) : resolve();
       };
@@ -80,11 +77,12 @@ export class Cases {
     });
   }
 
-  async authenticate(origin: string) {
-    return this.withShow(async () => {
+  async authenticateCommand(origin: string) {
+    return this.queue.add(async () => {
+      await this.bus.call("show");
       await this.ensureKey();
       await this.permitAuthenticate(origin);
-      return new Date().toISOString();
+      return this.backbone.did();
     });
   }
 }
