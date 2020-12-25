@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="80.9 264.9 187.2 77.2" width="187.2" height="77.2">
+  <defs/>
+  <metadata> Produced by OmniGraffle 7.18.1\n2020-12-25 13:54:37 +0000</metadata>
+  <g id="Canvas_1" fill="none" fill-opacity="1" stroke-dasharray="none" stroke="none" stroke-opacity="1">
+    <title>Canvas 1</title>
+    <g id="Canvas_1_Layer_1">
+      <title>Layer 1</title>
+      <g id="Graphic_2">
+        <path d="M 85.7 281.4 L 142.9 281.4 C 145.27483 281.4 147.2 283.32518 147.2 285.7 L 147.2 285.7 C 147.2 288.07483 145.27483 290 142.9 290 L 85.7 290 C 83.32518 290 81.4 288.07483 81.4 285.7 L 81.4 285.7 C 81.4 283.32518 83.32518 281.4 85.7 281.4 Z" stroke="#04cdcc" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_4">
+        <path d="M 100.3 317 L 157.5 317 C 159.87483 317 161.8 318.92518 161.8 321.3 L 161.8 321.3 C 161.8 323.67483 159.87483 325.6 157.5 325.6 L 100.3 325.6 C 97.92518 325.6 96 323.67483 96 321.3 L 96 321.3 C 96 318.92518 97.92518 317 100.3 317 Z" stroke="#00cdcd" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_5">
+        <path d="M 190.7 281.4 L 247.9 281.4 C 250.27483 281.4 252.2 283.32518 252.2 285.7 L 252.2 285.7 C 252.2 288.07483 250.27483 290 247.9 290 L 190.7 290 C 188.32518 290 186.4 288.07483 186.4 285.7 L 186.4 285.7 C 186.4 283.32518 188.32518 281.4 190.7 281.4 Z" fill="#00cdcc"/>
+        <path d="M 190.7 281.4 L 247.9 281.4 C 250.27483 281.4 252.2 283.32518 252.2 285.7 L 252.2 285.7 C 252.2 288.07483 250.27483 290 247.9 290 L 190.7 290 C 188.32518 290 186.4 288.07483 186.4 285.7 L 186.4 285.7 C 186.4 283.32518 188.32518 281.4 190.7 281.4 Z" stroke="#00cdcd" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_6">
+        <path d="M 206.1 317 L 263.3 317 C 265.67483 317 267.6 318.92518 267.6 321.3 L 267.6 321.3 C 267.6 323.67483 265.67483 325.6 263.3 325.6 L 206.1 325.6 C 203.72518 325.6 201.8 323.67483 201.8 321.3 L 201.8 321.3 C 201.8 318.92518 203.72518 317 206.1 317 Z" fill="#00cdcd"/>
+        <path d="M 206.1 317 L 263.3 317 C 265.67483 317 267.6 318.92518 267.6 321.3 L 267.6 321.3 C 267.6 323.67483 265.67483 325.6 263.3 325.6 L 206.1 325.6 C 203.72518 325.6 201.8 323.67483 201.8 321.3 L 201.8 321.3 C 201.8 318.92518 203.72518 317 206.1 317 Z" stroke="#00cdcd" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_8">
+        <ellipse cx="170.5" cy="269.7" rx="16.6500281234973" ry="4.30000693505322" stroke="#00cdcc" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_9">
+        <ellipse cx="170.5" cy="303.5" rx="16.6500281234973" ry="4.30000693505325" stroke="#00cdcd" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_10">
+        <ellipse cx="180.65" cy="305.5" rx="16.6500281234973" ry="4.30000693505326" fill="#00cdcd"/>
+        <ellipse cx="180.65" cy="305.5" rx="16.6500281234973" ry="4.30000693505326" stroke="#00cdcd" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_11">
+        <ellipse cx="180.65" cy="337.3" rx="16.6500281234973" ry="4.30000693505325" fill="#00cdcd"/>
+        <ellipse cx="180.65" cy="337.3" rx="16.6500281234973" ry="4.30000693505325" stroke="#00cdcd" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>

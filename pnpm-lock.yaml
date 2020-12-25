@@ -30,6 +30,7 @@ importers:
     dependencies:
       '@maskodid/postmessage-rpc': 'link:../lib/postmessage-rpc'
       '@silentcastle/keys': 1.4.0
+      '@stablelib/random': 1.0.0
       autoprefixer: 10.1.0
       next: 10.0.4_c39e9db791ea05e3ec4e0e74abb7a6b5
       p-queue: 6.6.2
@@ -45,6 +46,7 @@ importers:
     specifiers:
       '@maskodid/postmessage-rpc': 'workspace:*'
       '@silentcastle/keys': ^1.4.0
+      '@stablelib/random': ^1.0.0
       '@types/node': ^14.14.14
       '@types/react': ^17.0.0
       autoprefixer: ^10.1.0

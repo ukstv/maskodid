@@ -10,6 +10,7 @@
   "dependencies": {
     "@maskodid/postmessage-rpc": "workspace:*",
     "@silentcastle/keys": "^1.4.0",
+    "@stablelib/random": "^1.0.0",
     "autoprefixer": "^10.1.0",
     "next": "10.0.4",
     "p-queue": "^6.6.2",

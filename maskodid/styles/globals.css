@@ -16,6 +16,7 @@ ul.auth-buttons-container, .frame-container-body {
 
 ul.auth-buttons-container>li {
     @apply flex-grow content-center justify-center flex;
+    flex: 1 1 0;
 }
 ul.auth-buttons-container>li>button {
     @apply w-full h-full text-center hover:bg-gray-200 p-4 cursor-pointer;
