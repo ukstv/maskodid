@@ -1,0 +1,26 @@
+{
+  "name": "@maskodid/maskodid",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "./node_modules/.bin/next dev",
+    "build": "./node_modules/.bin/next build",
+    "start": "./node_modules/.bin/next start"
+  },
+  "dependencies": {
+    "@maskodid/postmessage-rpc": "workspace:*",
+    "autoprefixer": "^10.1.0",
+    "next": "10.0.4",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "rxjs": "^6.6.3",
+    "tailwindcss": "^2.0.2",
+    "uint8arrays": "^2.0.5",
+    "@silentcastle/keys": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.14",
+    "@types/react": "^17.0.0",
+    "typescript": "^4.1.3"
+  }
+}

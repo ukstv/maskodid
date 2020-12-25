@@ -1,0 +1,17 @@
+{
+  "name": "@maskodid/client",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "../node_modules/.bin/tsc --project .",
+    "dev": "../node_modules/.bin/tsc --watch --project ."
+  },
+  "dependencies": {
+    "tslib": "^2.0.3",
+    "@maskodid/postmessage-rpc": "workspace:*"
+  },
+  "devDependencies": {
+
+  }
+}

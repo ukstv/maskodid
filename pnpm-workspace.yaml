@@ -1,0 +1,5 @@
+packages:
+  - maskodid
+  - playground
+  - client
+  - lib/*

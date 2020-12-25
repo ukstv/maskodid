@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.page-container {
+  @apply container mx-auto pt-4;
+}
+
+h1 {
+  @apply text-4xl mb-2;
+}
+
+h2 {
+  @apply text-2xl;
+}
+
+section {
+  @apply pt-4;
+}
+
+button {
+  @apply py-2 px-4 rounded shadow text-white bg-blue-500 hover:bg-blue-700 active:bg-blue-900;
+}
+
+.button-group > button {
+  @apply mr-4;
+}
+
+input[type=text] {
+  @apply py-2 px-4 rounded border-blue-500 border;
+}
+
+input[type=text]:disabled {
+  opacity: 30%;
+}
