@@ -1,7 +1,9 @@
 import React from "react";
 import * as keys from "@silentcastle/keys";
+import * as util from "@silentcastle/did-util";
 import { BehaviorSubject } from "rxjs";
 import { CreateJwsPayload } from "../application/create-jws.payload";
+import {InvalidDidRequestedError} from "./invalid-did-requested.error";
 
 const privateKeyFactory = new keys.PrivateKeyFactory();
 
@@ -49,6 +51,12 @@ export class Backbone implements IBackbone {
   }
 
   async sign(payload: CreateJwsPayload, origin: string) {
+    const did = await this.did()
+    const requestedDid = util.parse(payload.did).did
+    if (requestedDid !== did) {
+      throw new InvalidDidRequestedError(`Invalid DID ${requestedDid} requested`)
+    }
+    // check permission
     const privateKey = await this.privateKey();
     const signer = await keys.keyMethod.SignerIdentified.fromPrivateKey(
       privateKey

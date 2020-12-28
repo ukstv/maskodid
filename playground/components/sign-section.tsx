@@ -13,7 +13,7 @@ export function SignSection(props: { maskodid: Maskodid; did: string }) {
 
   const requestSignature = async () => {
     const payloadObject = JSON.parse(payload);
-    const signature = await props.maskodid.sign(payloadObject, props.did);
+    const signature = await props.maskodid.sign(payloadObject, "did:key:z6MkmzYNkgxkznJLz5MkrU36fCQp8PGeRZrTH62Wmtn3gS3i");
     setSignature(signature.jws);
   };
 
