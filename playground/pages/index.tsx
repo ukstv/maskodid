@@ -1,11 +1,14 @@
-import Head from "next/head";
 import { Maskodid } from "@maskodid/client";
 import { FrameSection } from "../components/frame-section";
 import { DidSection } from "../components/did-section";
+import { SignSection } from "../components/sign-section";
+import { useState } from "react";
 
 const maskodid = new Maskodid("http://localhost:3000");
 
 export default function Home() {
+  const [did, setDid] = useState("");
+
   return (
     <div className={"page-container"}>
       <h1>Maskodid</h1>
@@ -18,19 +21,8 @@ export default function Home() {
         could do with the DID provider.
       </p>
       <FrameSection maskodid={maskodid} />
-      <DidSection maskodid={maskodid} />
-      {/*<section>*/}
-      {/*  <h2>Signing</h2>*/}
-      {/*  <div>*/}
-      {/*    <textarea></textarea>*/}
-      {/*  </div>*/}
-      {/*  <div>*/}
-      {/*    <button>Sign</button>*/}
-      {/*  </div>*/}
-      {/*  <div>*/}
-      {/*    <textarea></textarea>*/}
-      {/*  </div>*/}
-      {/*</section>*/}
+      <DidSection maskodid={maskodid} onDid={setDid} />
+      <SignSection maskodid={maskodid} did={did} />
       {/*<section>*/}
       {/*  <h2>Encryption</h2>*/}
       {/*  <div>*/}

@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { Maskodid } from "@maskodid/client";
 
-export function DidSection(props: { maskodid: Maskodid }) {
+export function DidSection(props: {
+  maskodid: Maskodid;
+  onDid: (did: string) => void;
+}) {
   const [did, setDid] = useState("");
 
   const authenticate = () => {
     props.maskodid
       .authenticate()
       .then((did) => {
-        console.log("DidSection.authenticate", did);
         setDid(did);
+        props.onDid(did);
       })
       .catch((error) => {
         console.log(error);
@@ -23,12 +26,7 @@ export function DidSection(props: { maskodid: Maskodid }) {
         <button onClick={authenticate}>Authenticate</button>
       </div>
       <div className={"mt-2"}>
-        <input
-          type={"text"}
-          className={"w-1/2 min-w-max"}
-          value={did}
-          disabled={!did}
-        />
+        <input type={"text"} value={did} disabled={!did} />
       </div>
     </section>
   );

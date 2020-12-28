@@ -5,7 +5,7 @@ export class Maskodid {
 
   constructor(readonly frameUrl: string) {}
 
-  attachFrame(): FrameWrap {
+  private attachFrame(): FrameWrap {
     if (this.#frame) {
       return this.#frame;
     } else {
@@ -14,7 +14,7 @@ export class Maskodid {
     }
   }
 
-  async loadFrame(): Promise<FrameWrap> {
+  private async loadFrame(): Promise<FrameWrap> {
     const frame = this.attachFrame();
     await frame.waitReady();
     return frame;
@@ -22,16 +22,24 @@ export class Maskodid {
 
   async authenticate(): Promise<string> {
     const frame = await this.loadFrame();
-    return frame.rpc.call<string>("authenticate", {});
+    return frame.rpc.call<string>("did_authenticate", {});
   }
 
-  show() {
+  show(): void {
     const frame = this.attachFrame();
     frame.show();
   }
 
-  hide() {
+  hide(): void {
     const frame = this.attachFrame();
     frame.hide();
+  }
+
+  async sign(payload: object, did: string): Promise<{jws: string}> {
+    const frame = await this.loadFrame();
+    return frame.rpc.call<{jws: string}>("did_createJWS", {
+      payload: payload,
+      did: did,
+    });
   }
 }

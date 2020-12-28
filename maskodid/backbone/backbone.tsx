@@ -1,12 +1,9 @@
 import React from "react";
-import {
-  fingerprint,
-  PrivateKeyFactory,
-  AlgorithmKind,
-} from "@silentcastle/keys";
+import * as keys from "@silentcastle/keys";
 import { BehaviorSubject } from "rxjs";
+import { CreateJwsPayload } from "../application/create-jws.payload";
 
-const privateKeyFactory = new PrivateKeyFactory();
+const privateKeyFactory = new keys.PrivateKeyFactory();
 
 export interface IBackbone {
   setSeed(seed: string): void;
@@ -14,6 +11,7 @@ export interface IBackbone {
   // authenticate(): Promise<string>;
   did(): Promise<string>;
   clearSeed(): void;
+  sign(payload: CreateJwsPayload, origin: string): Promise<{ jws: string }>;
 }
 
 export class EmptyBackbone implements IBackbone {
@@ -27,28 +25,19 @@ export class EmptyBackbone implements IBackbone {
   }
   clearSeed(): void {}
   page$ = new BehaviorSubject(<></>);
+
+  sign(payload: CreateJwsPayload, origin: string): Promise<{ jws: string }> {
+    throw new Error(`EmptyBackbone.sign`);
+  }
 }
 
-export class Backbone {
+export class Backbone implements IBackbone {
   static create() {
     if (typeof localStorage !== "undefined") {
-      return new Backbone().goHome();
+      return new Backbone();
     } else {
       return new EmptyBackbone();
     }
-  }
-
-  protected goHome() {
-    if (this.hasSeed) {
-      this.did()
-        .then((did) => {
-          // this._page$.next(<HomeIndexScreen did={did} />);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-    return this;
   }
 
   setSeed(seed: string) {
@@ -59,15 +48,28 @@ export class Backbone {
     localStorage.removeItem("maskodid:seed");
   }
 
+  async sign(payload: CreateJwsPayload, origin: string) {
+    const privateKey = await this.privateKey();
+    const signer = await keys.keyMethod.SignerIdentified.fromPrivateKey(
+      privateKey
+    );
+    const signature = await keys.jws.create(signer, payload.payload);
+    return { jws: signature };
+  }
+
   get hasSeed(): boolean {
     return Boolean(localStorage.getItem("maskodid:seed"));
   }
 
-  async did() {
+  async privateKey(): Promise<keys.IPrivateKey & keys.ISigner> {
     const seed = localStorage.getItem("maskodid:seed");
-    const privateKey = privateKeyFactory.fromSeed(AlgorithmKind.ed25519, seed);
+    return privateKeyFactory.fromSeed(keys.AlgorithmKind.ed25519, seed);
+  }
+
+  async did() {
+    const privateKey = await this.privateKey();
     const publicKey = await privateKey.publicKey();
-    const f = fingerprint(publicKey);
+    const f = keys.fingerprint(publicKey);
     return `did:key:${f}`;
   }
 }

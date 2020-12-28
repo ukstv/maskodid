@@ -7,6 +7,7 @@ import { HomeDidScreen } from "./home/did.screen";
 import { IBus } from "../backbone/bus";
 import { PermitAuthenticationScreen } from "./permit/authentication.screen";
 import PQueue from "p-queue";
+import { CreateJwsPayload } from "./create-jws.payload";
 
 export class Cases {
   readonly queue = new PQueue({ concurrency: 1 });
@@ -82,6 +83,10 @@ export class Cases {
         <PermitAuthenticationScreen done={handleDone} origin={origin} />
       );
     });
+  }
+
+  async signCommand(payload: CreateJwsPayload, origin: string) {
+    return this.backbone.sign(payload, origin)
   }
 
   async authenticateCommand(origin: string) {

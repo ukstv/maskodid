@@ -26,10 +26,22 @@ button {
   @apply mr-4;
 }
 
-input[type=text] {
-  @apply py-2 px-4 rounded border-blue-500 border;
+input[type=text], textarea {
+  @apply py-2 px-4 rounded border-blue-500 border w-1/2 min-w-max;
 }
 
-input[type=text]:disabled {
+input[type=text]:disabled, textarea:disabled, button:disabled, .disabled {
   opacity: 30%;
+}
+
+.badge {
+  @apply rounded text-white py-0.5 px-1;
+}
+
+.json-badge {
+  @apply inline-block rounded text-white py-0.5 px-1 bg-green-300 relative w-24 text-center align-top -ml-24 rounded-tl-none rounded-br-none;
+}
+
+.json-badge.invalid {
+  @apply bg-red-300;
 }
