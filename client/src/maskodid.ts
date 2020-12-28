@@ -35,11 +35,17 @@ export class Maskodid {
     frame.hide();
   }
 
-  async sign(payload: object, did: string): Promise<{jws: string}> {
+  async sign(
+    payload: object,
+    did?: string,
+    header?: object
+  ): Promise<{ jws: string }> {
     const frame = await this.loadFrame();
-    return frame.rpc.call<{jws: string}>("did_createJWS", {
+    const effectiveDid = did || (await this.authenticate());
+    return frame.rpc.call<{ jws: string }>("did_createJWS", {
       payload: payload,
-      did: did,
+      did: effectiveDid,
+      header: header
     });
   }
 }

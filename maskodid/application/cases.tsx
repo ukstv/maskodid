@@ -75,18 +75,33 @@ export class Cases {
   }
 
   async permitAuthenticate(origin: string) {
-    return new Promise<void>((resolve, reject) => {
-      const handleDone = (error?: Error) => {
-        error ? reject(error) : resolve();
-      };
-      this.inside.goNext(
-        <PermitAuthenticationScreen done={handleDone} origin={origin} />
-      );
-    });
+    if (this.backbone.hasAuthentication(origin)) {
+      return;
+    } else {
+      return new Promise<void>((resolve, reject) => {
+        const handleDone = (error?: Error) => {
+          if (error) {
+            reject(error);
+          } else {
+            this.backbone.saveAuthentication(origin);
+            resolve();
+          }
+        };
+        this.inside.goNext(
+          <PermitAuthenticationScreen done={handleDone} origin={origin} />
+        );
+      });
+    }
   }
 
-  async signCommand(payload: CreateJwsPayload, origin: string) {
-    return this.backbone.sign(payload, origin)
+  async signCommand(
+    payload: CreateJwsPayload,
+    origin: string
+  ): Promise<{ jws: string }> {
+    if (!this.backbone.hasAuthentication(origin)) {
+      await this.permitAuthenticate(origin);
+    }
+    return this.backbone.sign(payload, origin);
   }
 
   async authenticateCommand(origin: string) {
