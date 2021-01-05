@@ -5,6 +5,7 @@ import { InsideContext, InsideContextReal } from "./inside-context";
 import { Cases } from "./cases";
 import { CasesProvider } from "./cases.context";
 import { CreateJwsPayload } from "./create-jws.payload";
+import { DecryptJwePayload } from "./decrypt-jwe.payload";
 
 type Props = {
   home: JSX.Element;
@@ -23,6 +24,9 @@ export function InsideProvider(props: React.PropsWithChildren<Props>) {
     });
     bus.expose<CreateJwsPayload>("did_createJWS", async (data, origin) => {
       return cases.signCommand(data, origin);
+    });
+    bus.expose<DecryptJwePayload>("did_decryptJWE", async (data, origin) => {
+      return cases.decryptCommand(data, origin);
     });
   }, [backbone, bus]);
 

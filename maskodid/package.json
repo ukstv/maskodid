@@ -10,7 +10,7 @@
   "dependencies": {
     "@maskodid/postmessage-rpc": "workspace:*",
     "@silentcastle/did-util": "^1.1.0",
-    "@silentcastle/keys": "^2.0.0",
+    "@silentcastle/keys": "^2.1.0",
     "@stablelib/random": "^1.0.0",
     "@types/lodash": "^4.14.166",
     "autoprefixer": "^10.1.0",
@@ -25,7 +25,8 @@
     "react-dom": "17.0.1",
     "rxjs": "^6.6.3",
     "tailwindcss": "^2.0.2",
-    "uint8arrays": "^2.0.5"
+    "uint8arrays": "^2.0.5",
+    "did-jwt": "^4.8.1"
   },
   "devDependencies": {
     "@types/node": "^14.14.14",

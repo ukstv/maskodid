@@ -8,6 +8,7 @@ import { IBus } from "../backbone/bus";
 import { PermitAuthenticationScreen } from "./permit/authentication.screen";
 import PQueue from "p-queue";
 import { CreateJwsPayload } from "./create-jws.payload";
+import { DecryptJwePayload } from "./decrypt-jwe.payload";
 
 export class Cases {
   readonly queue = new PQueue({ concurrency: 1 });
@@ -102,6 +103,13 @@ export class Cases {
       await this.permitAuthenticate(origin);
     }
     return this.backbone.sign(payload, origin);
+  }
+
+  async decryptCommand(payload: DecryptJwePayload, origin: string) {
+    if (!this.backbone.hasAuthentication(origin)) {
+      await this.permitAuthenticate(origin);
+    }
+    return this.backbone.decrypt(payload, origin);
   }
 
   async authenticateCommand(origin: string) {

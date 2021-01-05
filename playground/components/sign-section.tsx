@@ -13,14 +13,15 @@ export function SignSection(props: { maskodid: Maskodid; did: string }) {
 
   const requestSignature = async () => {
     const payloadObject = JSON.parse(payload);
-    const signature = await props.maskodid.sign(payloadObject, "did:key:z6MkmzYNkgxkznJLz5MkrU36fCQp8PGeRZrTH62Wmtn3gS3i");
-    setSignature(signature.jws);
+    const signature = await props.maskodid.sign(payloadObject, props.did);
+    return signature.jws;
   };
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     requestSignature()
-      .then(() => {
+      .then((jws) => {
+        setSignature(jws);
       })
       .catch((error) => {
         console.error(error);
@@ -56,8 +57,8 @@ export function SignSection(props: { maskodid: Maskodid; did: string }) {
     <section className={disabledClassName}>
       <h2>Signing</h2>
       <div>
+        <p>Payload to sign:</p>
         <textarea
-          // className={"z-0"}
           onChange={handleChange}
           value={payload}
           disabled={!props.did}
@@ -75,12 +76,9 @@ export function SignSection(props: { maskodid: Maskodid; did: string }) {
           Clear
         </button>
       </div>
-      <div>
-        <textarea
-          className={"mt-2"}
-          disabled={!props.did || !signature}
-          value={signature}
-        />
+      <div className={"mt-2"}>
+        <p>JWS Compact form:</p>
+        <textarea disabled={!props.did || !signature} value={signature} />
       </div>
     </section>
   );

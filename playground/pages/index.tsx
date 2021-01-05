@@ -3,6 +3,7 @@ import { FrameSection } from "../components/frame-section";
 import { DidSection } from "../components/did-section";
 import { SignSection } from "../components/sign-section";
 import { useState } from "react";
+import { EncryptionSection } from "../components/encryption-section";
 
 const maskodid = new Maskodid("http://localhost:3000");
 
@@ -23,21 +24,7 @@ export default function Home() {
       <FrameSection maskodid={maskodid} />
       <DidSection maskodid={maskodid} onDid={setDid} />
       <SignSection maskodid={maskodid} did={did} />
-      {/*<section>*/}
-      {/*  <h2>Encryption</h2>*/}
-      {/*  <div>*/}
-      {/*    <textarea></textarea>*/}
-      {/*  </div>*/}
-      {/*  <div>*/}
-      {/*    <input type={"text"} className={"w-1/2 min-w-max"} />*/}
-      {/*  </div>*/}
-      {/*  <div>*/}
-      {/*    <button>Encrypt</button>*/}
-      {/*  </div>*/}
-      {/*  <div>*/}
-      {/*    <textarea></textarea>*/}
-      {/*  </div>*/}
-      {/*</section>*/}
+      <EncryptionSection maskodid={maskodid} did={did} />
     </div>
   );
 }

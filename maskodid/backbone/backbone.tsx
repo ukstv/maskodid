@@ -3,6 +3,9 @@ import * as keys from "@silentcastle/keys";
 import * as util from "@silentcastle/did-util";
 import { CreateJwsPayload } from "../application/create-jws.payload";
 import { InvalidDidRequestedError } from "./invalid-did-requested.error";
+import { DecryptJwePayload } from "../application/decrypt-jwe.payload";
+import * as didJWT from "did-jwt";
+import * as uint8arrays from "uint8arrays";
 
 const privateKeyFactory = new keys.PrivateKeyFactory();
 
@@ -12,8 +15,12 @@ export interface IBackbone {
   did(): Promise<string>;
   clearSeed(): void;
   sign(payload: CreateJwsPayload, origin: string): Promise<{ jws: string }>;
+  decrypt(
+    payload: DecryptJwePayload,
+    origin: string
+  ): Promise<{ cleartext: string }>;
   saveAuthentication(origin: string): void;
-  hasAuthentication(origin: string): boolean
+  hasAuthentication(origin: string): boolean;
 }
 
 export class EmptyBackbone implements IBackbone {
@@ -34,7 +41,14 @@ export class EmptyBackbone implements IBackbone {
   }
 
   hasAuthentication(origin: string): boolean {
-    return false
+    return false;
+  }
+
+  decrypt(
+    payload: DecryptJwePayload,
+    origin: string
+  ): Promise<{ cleartext: string }> {
+    throw new Error(`EmptyBackbone.decrypt`);
   }
 }
 
@@ -68,7 +82,11 @@ export class Backbone implements IBackbone {
     const signer = await keys.keyMethod.SignerIdentified.fromPrivateKey(
       privateKey
     );
-    const signature = await keys.jws.create(signer, payload.payload, payload.header);
+    const signature = await keys.jws.create(
+      signer,
+      payload.payload,
+      payload.header
+    );
     return { jws: signature };
   }
 
@@ -76,7 +94,7 @@ export class Backbone implements IBackbone {
     return Boolean(localStorage.getItem("maskodid:seed"));
   }
 
-  async privateKey(): Promise<keys.IPrivateKey & keys.ISigner> {
+  async privateKey(): Promise<keys.ed25519.PrivateKey> {
     const seed = localStorage.getItem("maskodid:seed");
     return privateKeyFactory.fromSeed(keys.AlgorithmKind.ed25519, seed);
   }
@@ -94,9 +112,9 @@ export class Backbone implements IBackbone {
 
   hasAuthentication(origin: string): boolean {
     const authenticationsString =
-        localStorage.getItem("maskodid:authentications") || "[]";
+      localStorage.getItem("maskodid:authentications") || "[]";
     const authentications = new Set(JSON.parse(authenticationsString));
-    return authentications.has(origin)
+    return authentications.has(origin);
   }
 
   async did() {
@@ -104,6 +122,22 @@ export class Backbone implements IBackbone {
     const publicKey = await privateKey.publicKey();
     const f = keys.fingerprint(publicKey);
     return `did:key:${f}`;
+  }
+
+  async decrypt(
+    payload: DecryptJwePayload,
+    origin: string
+  ): Promise<{ cleartext: string }> {
+    const privateKey = await this.privateKey();
+    const x25519Key = await privateKey.x25519();
+    const decrypter = x25519Key.decrypter();
+    const cleartext = await didJWT.decryptJWE(
+      payload.jwe as didJWT.JWE,
+      decrypter
+    );
+    return {
+      cleartext: uint8arrays.toString(cleartext, "base64pad"),
+    };
   }
 }
 
