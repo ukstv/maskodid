@@ -36,7 +36,7 @@ export function SeedIndexScreen(props: { done: (error?: Error) => void }) {
           >
             <img
               src={"/metamask-fox.svg"}
-              className={"h-full inline"}
+              className={"w-1/2 inline"}
               title={"MetaMask"}
               alt={"MetaMask"}
             />
