@@ -1,5 +1,5 @@
 import React from "react";
-import { Maskodid } from "@maskodid/client";
+import { Maskodid } from "maskodid";
 
 export function FrameSection(props: { maskodid: Maskodid }) {
   return (

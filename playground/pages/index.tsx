@@ -1,4 +1,4 @@
-import { Maskodid } from "@maskodid/client";
+import { Maskodid } from "maskodid";
 import { FrameSection } from "../components/frame-section";
 import { DidSection } from "../components/did-section";
 import { SignSection } from "../components/sign-section";

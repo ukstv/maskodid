@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Maskodid } from "@maskodid/client";
+import { Maskodid } from "maskodid";
 import * as didJWT from "did-jwt";
 import { Resolver } from "did-resolver";
 import keyResolver from "key-did-resolver";

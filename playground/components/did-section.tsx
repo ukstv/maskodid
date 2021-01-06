@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Maskodid } from "@maskodid/client";
+import { Maskodid } from "maskodid";
 
 export function DidSection(props: {
   maskodid: Maskodid;
