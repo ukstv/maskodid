@@ -1,9 +1,14 @@
 node_modules/
+
 lib/*/node_modules/
 lib/*/dist/
+
 client/node_modules/
 client/dist/
+
 maskodid/node_modules/
 maskodid/.next/
+maskodid/out/
+
 playground/node_modules/
 playground/.next/
