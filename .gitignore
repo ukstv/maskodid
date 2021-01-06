@@ -3,12 +3,12 @@ node_modules/
 lib/*/node_modules/
 lib/*/dist/
 
-client/node_modules/
-client/dist/
-
 maskodid/node_modules/
-maskodid/.next/
-maskodid/out/
+maskodid/dist/
+
+frame/node_modules/
+frame/.next/
+frame/out/
 
 playground/node_modules/
 playground/.next/
