@@ -5,6 +5,7 @@ export function HeadDefault() {
   return (
     <Head>
       <title>Maskodid Frame</title>
+      <link rel="shortcut icon" href="/metamask-icon.png" />
     </Head>
   );
 }

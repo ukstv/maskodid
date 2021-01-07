@@ -10,7 +10,7 @@ export function SeedMetamaskScreen(props: { done: (error?: Error) => void }) {
       if (typeof window !== "undefined" && "ethereum" in window) {
         const w = window as any;
         const addresses = await w.ethereum.enable();
-        const message = `Generate entropy for ${window.location.origin}`;
+        const message = `Generate entropy for Maskodid at ${window.location.origin}`;
         const bytes = uint8arrays.toString(
           uint8arrays.fromString(message),
           "base16"
