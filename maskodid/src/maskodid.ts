@@ -1,10 +1,12 @@
 import { FrameWrap } from "./frame-wrap";
 import * as uint8arrays from "uint8arrays";
 
+const DEFAULT_FRAME_URL = "https://frame.maskodid.ukstv.me";
+
 export class Maskodid {
   #frame: FrameWrap | null = null;
 
-  constructor(readonly frameUrl: string) {}
+  constructor(readonly frameUrl: string = DEFAULT_FRAME_URL) {}
 
   private attachFrame(): FrameWrap {
     if (this.#frame) {
