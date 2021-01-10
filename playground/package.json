@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "./node_modules/.bin/next dev --port 4000",
     "build": "./node_modules/.bin/next build",
-    "start": "./node_modules/.bin/next start"
+    "start": "./node_modules/.bin/next start",
+    "export": "./node_modules/.bin/next export"
   },
   "dependencies": {
     "next": "10.0.4",
