@@ -31,28 +31,34 @@ export function SeedIndexScreen(props: { done: (error?: Error) => void }) {
       <ul className={"auth-buttons-container"}>
         <li>
           <button
-            className={"text-center"}
+            className={"auth-method"}
             onClick={() => handleSelect(AuthSource.METAMASK)}
           >
-            <img
-              src={"/metamask-fox.svg"}
-              className={"w-1/2 inline"}
-              title={"MetaMask"}
-              alt={"MetaMask"}
-            />
+            <span className={"auth-method-picture"}>
+              <img
+                src={"/metamask-fox.svg"}
+                className={"w-1/2 inline"}
+                title={"MetaMask"}
+                alt={"MetaMask"}
+              />
+            </span>
+            <span className={"auth-method-name"}>MetaMask</span>
           </button>
         </li>
         <li>
           <button
-            className={"text-center"}
+            className={"auth-method"}
             onClick={() => handleSelect(AuthSource.RANDOM)}
           >
-            <img
-              src={"/random-kryptos.svg"}
-              className={"w-3/4 inline"}
-              title={"Random"}
-              alt={"Random"}
-            />
+            <span className={"auth-method-picture"}>
+              <img
+                src={"/random-kryptos.svg"}
+                className={"w-3/4 inline"}
+                title={"Random"}
+                alt={"Random"}
+              />
+            </span>
+            <span className={"auth-method-name"}>Random</span>
           </button>
         </li>
       </ul>
