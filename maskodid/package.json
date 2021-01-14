@@ -20,7 +20,7 @@
   "scripts": {
     "build": "../node_modules/.bin/tsc --project .",
     "dev": "../node_modules/.bin/tsc --watch --project .",
-    "clean": "./node_modules/.bin/rimraf dist",
+    "clean": "../node_modules/.bin/rimraf dist",
     "prepublishOnly": "pnpm run clean && pnpm run build"
   },
   "dependencies": {
@@ -29,6 +29,5 @@
     "uint8arrays": "^2.0.5"
   },
   "devDependencies": {
-    "rimraf": "^3.0.2"
   }
 }
