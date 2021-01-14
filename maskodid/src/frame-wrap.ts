@@ -23,6 +23,8 @@ export class FrameWrap {
     element.allowTransparency = true;
     // @ts-ignore
     element.frameBorder = 0;
+    element.sandbox.add("allow-scripts");
+    element.sandbox.add("allow-same-origin");
     document.body.appendChild(element);
 
     if (element.contentWindow) {

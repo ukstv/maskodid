@@ -1,7 +1,10 @@
 import Head from "next/head";
 import "../styles/globals.css";
+import { usePanelbear } from "../components/use-panelbear";
 
 export default function MyApp({ Component, pageProps }) {
+  usePanelbear("475k3q08fn7");
+
   return (
     <>
       <Head>

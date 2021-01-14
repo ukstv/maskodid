@@ -5,12 +5,15 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "../../node_modules/.bin/tsc --project .",
-    "dev": "../../node_modules/.bin/tsc --watch --project ."
+    "dev": "../../node_modules/.bin/tsc --watch --project .",
+    "clean": "./node_modules/.bin/rimraf dist",
+    "prepublishOnly": "pnpm run clean && pnpm run build"
   },
   "dependencies": {
     "tslib": "^2.0.3",
     "eventemitter3": "^4.0.7"
   },
   "devDependencies": {
+    "rimraf": "^3.0.2"
   }
 }

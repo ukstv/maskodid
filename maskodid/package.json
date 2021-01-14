@@ -3,13 +3,31 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "license": "(Apache-2.0 OR MIT)",
+  "keywords": [
+    "did",
+    "identity-wallet",
+    "frame"
+  ],
+  "homepage": "https://maskodid.ukstv.me",
+  "bugs": {
+    "url": "https://github.com/ukstv/maskodid/issues"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/ukstv/maskodid"
+  },
   "scripts": {
     "build": "../node_modules/.bin/tsc --project .",
-    "dev": "../node_modules/.bin/tsc --watch --project ."
+    "dev": "../node_modules/.bin/tsc --watch --project .",
+    "clean": "./node_modules/.bin/rimraf dist",
+    "prepublishOnly": "pnpm run clean && pnpm run build"
   },
   "dependencies": {
     "tslib": "^2.0.3",
     "@maskodid/postmessage-rpc": "workspace:*"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "rimraf": "^3.0.2"
+  }
 }

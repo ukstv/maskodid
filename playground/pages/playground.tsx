@@ -15,7 +15,7 @@ export default function PlaygroundPage() {
     <div className={"page-container"}>
       <h1>Maskodid Playground</h1>
       <p>
-        Maskodid is a simple DID provider. Based on MetaMask signature it
+        Maskodid is a simple DID provider. Based on the MetaMask signature it
         generates entropy for an ed25519 key used as did:key DID.
       </p>
       <p>

@@ -29,15 +29,11 @@ export default function IndexPage() {
       <section>
         <h2>Why</h2>
         <p>
-          When working with <a href={"https://www.w3.org/TR/did-core/"}>DID</a>{" "}
-          you eventually need a thing called <em>Identity Wallet</em> to store a
-          private key, make compliant signatures and decrypt messages. It
-          requires installing (and oftentimes building) custom browser
-          extension, phone application, or heavily relying on external cloud
-          infrastructure, which turns development into a nightmare. Maskodid is
-          a simple in-browser Identity Wallet perfectly suited for development
-          and testing of web-based DID solutions. It eliminates external
-          dependencies, making development process fast and pleasant.
+          When working with <a href={"https://www.w3.org/TR/did-core/"}>DID</a>{" "} you eventually need a thing called <em>Identity Wallet</em> to store a private key,
+          make compliant signatures and decrypt messages. It requires installing (and oftentimes building) custom browser extensions,
+          phone applications, or heavily relying on external cloud infrastructure, which turns development into a nightmare.
+          Maskodid is a simple in-browser Identity Wallet perfectly suited for the development and testing of web-based DID solutions.
+          It eliminates external dependencies, making the development process fast and pleasant.
         </p>
       </section>
       <section>
@@ -73,7 +69,7 @@ const did = await maskodid.authenticate() // did:key:z...`}
         </pre>
         <h3>Create JSON Web Signature</h3>
         <p>
-          The result is JWS in compact form. If passed DID does not match with
+          The result is JWS in a compact form. If passed DID does not match with
           the user's DID, the call throws an error.
         </p>
         <pre>
@@ -89,14 +85,14 @@ const jwt = await maskodid.sign({aud: '*', hello: 'world'}, did, {typ: "JWT"})`}
           </code>
         </pre>
         <p>
-          Resulting JWS contains key identifier (<code>kid</code>) as DID URL
+          The resulting JWS contains a key identifier (<code>kid</code>) as DID URL
           which makes it clear which key to check the signature against.
         </p>
         <h3>Decrypt JSON Web Encryption message</h3>
         <p>
           Maskodid supports <code>ECDH-ES+XC20PKW</code> JWE algorithm with{" "}
           <code>x25519</code> key exchange schema. To encrypt a payload to a DID
-          you only have to know the recipient's public key. It is decryption
+          you only have to know the recipient's public key. It is a decryption
           that requires knowledge of the private key. So, if one gets an
           encrypted message <code>jwe</code>, decryption happens like this:
         </p>
