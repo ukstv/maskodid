@@ -5,7 +5,7 @@ import { SignSection } from "../components/sign-section";
 import { useState } from "react";
 import { EncryptionSection } from "../components/encryption-section";
 
-const maskodid = new Maskodid("http://localhost:3000");
+const maskodid = new Maskodid(process.env.NEXT_PUBLIC_MASKODID_ENDPOINT);
 
 export default function PlaygroundPage() {
   const [did, setDid] = useState("");
