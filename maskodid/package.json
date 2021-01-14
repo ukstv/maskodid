@@ -1,6 +1,6 @@
 {
   "name": "maskodid",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "(Apache-2.0 OR MIT)",
@@ -14,8 +14,8 @@
     "url": "https://github.com/ukstv/maskodid/issues"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/ukstv/maskodid"
+    "type": "git",
+    "url": "https://github.com/ukstv/maskodid"
   },
   "scripts": {
     "build": "../node_modules/.bin/tsc --project .",
@@ -24,8 +24,9 @@
     "prepublishOnly": "pnpm run clean && pnpm run build"
   },
   "dependencies": {
+    "@maskodid/postmessage-rpc": "workspace:*",
     "tslib": "^2.0.3",
-    "@maskodid/postmessage-rpc": "workspace:*"
+    "uint8arrays": "^2.0.5"
   },
   "devDependencies": {
     "rimraf": "^3.0.2"
