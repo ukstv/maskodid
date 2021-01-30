@@ -31,8 +31,16 @@ This would ask a user for permission to share her DID with the application. If t
 ```typescript
 import { Maskodid } from "maskodid";
 const maskodid = new Maskodid();
-// Get DID
+// Get DID as string
 const did = await maskodid.authenticate(); // did:key:z...
+```
+
+Maskodid also supports [js-did](https://www.npmjs.com/package/dids). It exposes a `DID` instance via `maskodid.did`:
+```typescript
+import { Maskodid } from "maskodid";
+const maskodid = new Maskodid();
+// Get instance of DID from js-did
+const did = maskodid.did;
 ```
 
 ### Create JSON Web Signature

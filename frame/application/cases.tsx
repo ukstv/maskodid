@@ -7,7 +7,7 @@ import { HomeDidScreen } from "./home/did.screen";
 import { IBus } from "../backbone/bus";
 import { PermitAuthenticationScreen } from "./permit/authentication.screen";
 import PQueue from "p-queue";
-import { CreateJwsPayload } from "./create-jws.payload";
+import { CreateJwsPayload, toGeneralJWS } from "./signing";
 import { DecryptJwePayload } from "./decrypt-jwe.payload";
 
 export class Cases {
@@ -112,12 +112,25 @@ export class Cases {
     return this.backbone.decrypt(payload, origin);
   }
 
-  async authenticateCommand(origin: string) {
+  async authenticateCommand(data: any, origin: string) {
     return this.command(async () => {
       await this.bus.call("show");
       await this.ensureKey();
       await this.permitAuthenticate(origin);
-      return this.backbone.did();
+      const did = await this.backbone.did();
+      const payload = {
+        did,
+        aud: data.aud,
+        nonce: data.nonce,
+        paths: data.paths,
+        exp: Math.floor(Date.now() / 1000) + 600, // expires 10 min from now
+      };
+      const toSign = {
+        payload: payload,
+        did: did,
+      };
+      const { jws } = await this.backbone.sign(toSign, origin);
+      return toGeneralJWS(jws);
     });
   }
 }

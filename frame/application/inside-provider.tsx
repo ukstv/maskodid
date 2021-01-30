@@ -4,7 +4,7 @@ import { BackboneContext } from "../backbone/backbone";
 import { InsideContext, InsideContextReal } from "./inside-context";
 import { Cases } from "./cases";
 import { CasesProvider } from "./cases.context";
-import { CreateJwsPayload } from "./create-jws.payload";
+import { CreateJwsPayload } from "./signing";
 import { DecryptJwePayload } from "./decrypt-jwe.payload";
 
 type Props = {
@@ -19,8 +19,8 @@ export function InsideProvider(props: React.PropsWithChildren<Props>) {
   const [cases] = useState(() => new Cases(context, backbone, bus));
 
   useEffect(() => {
-    bus.expose("did_authenticate", async (data, origin) => {
-      return cases.authenticateCommand(origin);
+    bus.expose<object>("did_authenticate", async (data, origin) => {
+      return cases.authenticateCommand(data, origin);
     });
     bus.expose<CreateJwsPayload>("did_createJWS", async (data, origin) => {
       return cases.signCommand(data, origin);

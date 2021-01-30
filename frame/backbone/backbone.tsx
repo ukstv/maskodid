@@ -1,7 +1,7 @@
 import React from "react";
 import * as keys from "@silentcastle/keys";
 import * as util from "@silentcastle/did-util";
-import { CreateJwsPayload } from "../application/create-jws.payload";
+import { CreateJwsPayload } from "../application/signing";
 import { InvalidDidRequestedError } from "./invalid-did-requested.error";
 import { DecryptJwePayload } from "../application/decrypt-jwe.payload";
 import * as didJWT from "did-jwt";

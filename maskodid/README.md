@@ -67,6 +67,17 @@ const maskodid = new Maskodid();
 const cleartext = await maskodid.decrypt(jwe);
 ```
 
+### DID Provider and js-did
+
+Maskodid also exposes [js-did](https://www.npmjs.com/package/dids):
+
+```typescript
+import { Maskodid } from "maskodid";
+const maskodid = new Maskodid();
+// Get js-did instance
+const did = maskodid.did
+```
+
 ## License
 
 Apache-2.0 or MIT
